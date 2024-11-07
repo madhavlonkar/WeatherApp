@@ -1,7 +1,7 @@
 window.addEventListener('load', function () {
   setTimeout(() => {
       document.getElementById('loading-screen').style.display = 'none';
-  }, 100); 
+  }, 400); 
 });
 
 document.getElementById("search").addEventListener('click', getWeather);
@@ -15,7 +15,7 @@ function displayDateAndTime() {
 
 document.getElementById("errormsg").style.display = 'none';
 
-console.log("I AM HERE");
+//console.log("I AM HERE");
 
 async function getWeather() {
   event.preventDefault();
@@ -32,7 +32,7 @@ async function getWeather() {
   try {
     const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`);
     const data = await response.json();
-    console.log(data);
+    //console.log(data);
 
     // const weather = data.weather[0].main;
     const weatherDescription = data.weather[0].description;
