@@ -1,7 +1,7 @@
 window.addEventListener('load', function () {
   setTimeout(() => {
-      document.getElementById('loading-screen').style.display = 'none';
-  }, 400); 
+    document.getElementById('loading-screen').style.display = 'none';
+  }, 400);
 });
 
 document.getElementById("search").addEventListener('click', getWeather);
@@ -15,7 +15,6 @@ function displayDateAndTime() {
 
 document.getElementById("errormsg").style.display = 'none';
 
-//console.log("I AM HERE");
 
 async function getWeather() {
   event.preventDefault();
@@ -29,12 +28,12 @@ async function getWeather() {
     return false;
   }
 
+  document.getElementById('loading-screen').style.display = '';
+
   try {
     const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`);
     const data = await response.json();
-    //console.log(data);
 
-    // const weather = data.weather[0].main;
     const weatherDescription = data.weather[0].description;
     const icon = data.weather[0].icon;
     const cityName = data.name;
@@ -50,8 +49,8 @@ async function getWeather() {
     document.getElementById("errormsg").style.display = 'none';
 
     document.getElementById("temp").innerText = temp;
-    const condition=document.getElementById("condition");
-    condition.style.textTransform='capitalize';
+    const condition = document.getElementById("condition");
+    condition.style.textTransform = 'capitalize';
     condition.innerText = weatherDescription;
 
     document.getElementById("location").innerText = `${cityName}, ${country}`;
@@ -75,5 +74,8 @@ async function getWeather() {
   } catch (error) {
     console.error("Error fetching weather data:", error);
     document.getElementById("errormsg").style.display = 'inline-block';
+  } finally {
+    document.getElementById('loading-screen').style.display = 'none';
   }
 }
+
