@@ -1,7 +1,7 @@
 window.addEventListener('load', function () {
   setTimeout(() => {
       document.getElementById('loading-screen').style.display = 'none';
-  }, 400); 
+  }, 100); 
 });
 
 document.getElementById("search").addEventListener('click', getWeather);
@@ -30,7 +30,7 @@ async function getWeather() {
   }
 
   try {
-    const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`);
+    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`);
     const data = await response.json();
     console.log(data);
 
